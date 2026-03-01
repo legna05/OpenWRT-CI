@@ -25,7 +25,6 @@ repos=(
     "passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main"
     "openclash https://github.com/vernesong/OpenClash;master"
     "nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main"
-    "gecoosac https://github.com/lwb1978/openwrt-gecoosac.git;main"
     "ddns_go https://github.com/sirpdboy/luci-app-ddns-go.git;main"
     "socat https://github.com/chenmozhijin/luci-app-socat;main"
 )
