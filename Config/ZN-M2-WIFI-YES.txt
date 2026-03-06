@@ -17,7 +17,6 @@ CONFIG_ATH11K_NSS_SUPPORT=n
 #删除插件
 CONFIG_PACKAGE_luci-app-attendedsysupgrade=n
 CONFIG_PACKAGE_luci-app-wol=n
-CONFIG_PACKAGE_luci-app-netspeedtest=n
 CONFIG_PACKAGE_luci-app-partexp=n
 CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-tailscale=n
@@ -139,11 +138,6 @@ CONFIG_PACKAGE_usb-modeswitch=y
 CONFIG_PACKAGE_usbmuxd=n
 CONFIG_PACKAGE_usbutils=y
 CONFIG_PACKAGE_xz-utils=y
-# 增加插件
-CONFIG_PACKAGE_luci-app-autoreboot=y
-CONFIG_PACKAGE_luci-app-upnp=y
-CONFIG_PACKAGE_luci-app-wolplus=y
-CONFIG_PACKAGE_luci-app-netspeedtest=y
 # LUCKY
 CONFIG_PACKAGE_luci-app-lucky=n
 CONFIG_PACKAGE_luci-i18n-lucky-zh-cn=n
@@ -179,6 +173,11 @@ CONFIG_PACKAGE_luci-app-acme=y
 CONFIG_PACKAGE_luci-app-uhttpd=y
 CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_luci-app-udpxy=y
+CONFIG_PACKAGE_luci-app-autoreboot=y
+CONFIG_PACKAGE_luci-app-upnp=y
+CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-netspeedtest=y
 #科学插件调整
 CONFIG_PACKAGE_luci-app-homeproxy=n
 CONFIG_PACKAGE_luci-app-openclash=y
+CONFIG_PACKAGE_luci-app-nikki=n
