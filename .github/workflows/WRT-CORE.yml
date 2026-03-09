@@ -196,7 +196,7 @@ jobs:
           cd ./wrt/
 
           cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
-          cat $GITHUB_WORKSPACE/Config/PASSWALL.txt >> .config
+
 
           $GITHUB_WORKSPACE/Scripts/Settings.sh
 
