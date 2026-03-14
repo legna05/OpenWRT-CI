@@ -29,6 +29,7 @@ repos=(
     "ddns_go           https://github.com/sirpdboy/luci-app-ddns-go.git;main"
     "netspeedtest      https://github.com/sirpdboy/netspeedtest.git;main"
     "socat             https://github.com/chenmozhijin/luci-app-socat.git;main"
+    "ipv6monitor       https://github.com/legna05/luci-app-ipv6monitor"
 )
 
 # 批量添加
