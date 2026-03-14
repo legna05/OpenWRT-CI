@@ -186,6 +186,7 @@ CONFIG_PACKAGE_luci-app-acme=y
 CONFIG_PACKAGE_luci-app-uhttpd=y
 CONFIG_PACKAGE_luci-app-udpxy=y
 CONFIG_PACKAGE_luci-app-arpbind=y
+CONFIG_PACKAGE_luci-app-ipv6monitor=y
 #删除插件
 CONFIG_PACKAGE_luci-app-attendedsysupgrade=n
 CONFIG_PACKAGE_luci-app-wol=n
