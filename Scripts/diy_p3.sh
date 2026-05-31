@@ -59,7 +59,7 @@ sed -i '/^generate_led() {/a\
         # 如果需要硬编码配置，直接在这里定义\
         local cfg1="led_power"\
         local cfg2="led_user"\
-
+        \
         # 配置第一个LED（电源灯）\
         uci -q batch <<-EOF\
             delete system.$cfg1\
