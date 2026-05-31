@@ -50,3 +50,32 @@ pushd $netspeedtest_path
 umask 022
 git checkout
 popd
+
+# 定义目标文件路径（修改为实际路径）
+CFG_FILE="./package/base-files/files/bin/config_generate"
+
+# 使用 sed 在 generate_led() { 行后插入内容
+sed -i '/^generate_led() {/a\
+        # 如果需要硬编码配置，直接在这里定义\
+        local cfg1="led_power"\
+        local cfg2="led_user"\
+        \
+        # 配置第一个LED（电源灯）\
+        uci -q batch <<-EOF\
+            delete system.$cfg1\
+            set system.$cfg1="led"\
+            set system.$cfg1.name="red off"\
+            set system.$cfg1.sysfs="firefly:blue:power"\
+            set system.$cfg1.trigger="none"\
+            set system.$cfg1.default="0"\
+        EOF\
+        \
+        # 配置第二个LED（用户灯）\
+        uci -q batch <<-EOF\
+            delete system.$cfg2\
+            set system.$cfg2="led"\
+            set system.$cfg2.name="green flash"\
+            set system.$cfg2.sysfs="firefly:yellow:user"\
+            set system.$cfg2.trigger="heartbeat"\
+            set system.$cfg2.interval="300"\
+        EOF\' "$CFG_FILE"
