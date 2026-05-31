@@ -53,7 +53,6 @@ popd
 
 # 定义目标文件路径（修改为实际路径）
 CFG_FILE="./package/base-files/files/bin/config_generate"
-
 # 使用 sed 在 generate_led() { 行后插入内容
 sed -i '/^generate_led() {/a\
         # 如果需要硬编码配置，直接在这里定义\
@@ -79,3 +78,10 @@ sed -i '/^generate_led() {/a\
             set system.$cfg2.trigger="heartbeat"\
             set system.$cfg2.interval="300"\
         EOF\' "$CFG_FILE"
+
+# diskman安装
+package_path="$PARENT_DIR/wrt/package"
+mkdir -p $package_path/luci-app-diskman
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package/luci-app-diskman/Makefile
+mkdir -p $package_path/parted
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
