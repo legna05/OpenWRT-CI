@@ -84,6 +84,6 @@ cat $CFG_FILE
 
 # diskman安装
 mkdir -p $package_path/luci-app-diskman
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package/luci-app-diskman/Makefile
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
 mkdir -p $package_path/parted
 wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
