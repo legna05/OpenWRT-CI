@@ -186,12 +186,12 @@ jobs:
         run: |
           cd ./wrt/package/
           $GITHUB_WORKSPACE/Scripts/diy_p3.sh
-
+      - name: Custom Packagesssssss-
+        run: |
+          $GITHUB_WORKSPACE/Scripts/Handles.sh
       - name: Custom Settings
         run: |
           cd ./wrt/
-          $GITHUB_WORKSPACE/Scripts/Settings.sh
-          $GITHUB_WORKSPACE/Scripts/Handles.sh
           
           if [[ "${WRT_CONFIG,,}" == *"test"* ]]; then
             cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
