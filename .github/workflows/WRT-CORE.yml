@@ -187,11 +187,12 @@ jobs:
           cd ./wrt/package/
           $GITHUB_WORKSPACE/Scripts/diy_p3.sh
 
-      - name: Custom Package
+      - name: Custom Packages
         run: |
           cd ./wrt/package/
           $GITHUB_WORKSPACE/Scripts/Handles.sh
-          
+          $GITHUB_WORKSPACE/Scripts/Packages.sh
+
       - name: Custom Settings
         run: |
           cd ./wrt/
