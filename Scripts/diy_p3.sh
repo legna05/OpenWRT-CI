@@ -61,4 +61,4 @@ mkdir -p $package_path/parted
 wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
 
 ARGON_DIR="$PARENT_DIR/wrt/feeds/luci/applications/luci-app-argon-config"
-sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" "$ARGON_DIR/root/etc/config/argon"
+sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" "$ARGON_DIR/root/etc/config/argon" && echo "theme-argon has been fixed!"
