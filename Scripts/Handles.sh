@@ -4,6 +4,17 @@
 
 PKG_PATH="$GITHUB_WORKSPACE/wrt/package/"
 
+#修改argon主题字体和颜色
+if [ -d *"luci-theme-argon"* ]; then
+	echo " " && cd ./luci-theme-argon/
+
+	sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" ./luci-app-argon-config/root/etc/config/argon
+
+	cd $PKG_PATH && echo "theme-argon has been fixed!"
+fi
+
+exit 0
+
 #预置HomeProxy数据
 if [ -d *"homeproxy"* ]; then
 	echo " "
@@ -24,15 +35,6 @@ if [ -d *"homeproxy"* ]; then
 	cd .. && rm -rf ./$HP_RULE/
 
 	cd $PKG_PATH && echo "homeproxy date has been updated!"
-fi
-
-#修改argon主题字体和颜色
-if [ -d *"luci-theme-argon"* ]; then
-	echo " " && cd ./luci-theme-argon/
-
-	sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" ./luci-app-argon-config/root/etc/config/argon
-
-	cd $PKG_PATH && echo "theme-argon has been fixed!"
 fi
 
 #修改aurora菜单式样
