@@ -198,7 +198,7 @@ jobs:
           fi
 
           $GITHUB_WORKSPACE/Scripts/Settings.sh
-
+          $GITHUB_WORKSPACE/Scripts/Handles.sh
           make defconfig -j$(nproc) && make clean -j$(nproc)
 
       - name: Download Packages
