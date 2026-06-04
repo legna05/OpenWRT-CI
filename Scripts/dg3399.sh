@@ -12,6 +12,7 @@ cp -f $DTS_PATH/uboot-rockchip/Makefile $WRT_PATH/package/boot/uboot-rockchip/Ma
 # 复制到对应的目录
 cp -f $DTS_PATH/uboot-rockchip/dg3399-rk3399_defconfig       $WRT_PATH/package/boot/uboot-rockchip/src/configs/dg3399-rk3399_defconfig
 cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399-u-boot.dtsi     $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-dg3399-u-boot.dtsi
+mkdir -p $WRT_PATH/package/boot/uboot-rockchip/src/dts/upstream/src/arm64/rockchip
 cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399.dts             $WRT_PATH/package/boot/uboot-rockchip/src/dts/upstream/src/arm64/rockchip/rk3399-dg3399.dts
 
 # 内核相关
