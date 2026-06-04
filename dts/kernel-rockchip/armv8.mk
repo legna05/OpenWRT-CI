@@ -1,4 +1,3 @@
-
 define Device/rockchip_dg3399
   $(Device/rk3399)
   DEVICE_VENDOR := Rockchip
