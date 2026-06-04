@@ -186,6 +186,7 @@ jobs:
         run: |
           cd ./wrt/package/
           $GITHUB_WORKSPACE/Scripts/diy_p3.sh
+          $GITHUB_WORKSPACE/Scripts/dg3399.sh
 
       - name: Custom Settings
         run: |
