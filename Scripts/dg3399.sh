@@ -15,13 +15,14 @@ cp -f $DTS_PATH/uboot-rockchip/dg3399-rk3399_defconfig       $WRT_PATH/package/b
 cat $WRT_PATH/package/boot/uboot-rockchip/src/configs/dg3399-rk3399_defconfig
 echo "=============================================================="
 cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399-u-boot.dtsi     $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-dg3399-u-boot.dtsi
-echo "=============================================================="
 # mkdir -p $WRT_PATH/package/boot/uboot-rockchip/src/dts/upstream/src/arm64/rockchip
 cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399.dts             $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-dg3399.dts
-echo "=============================================================="
+cat $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/Makefile
 
 # 内核相关
 cp -f $DTS_PATH/kernel-rockchip/rk3399-dg3399.dts            $WRT_PATH/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3399-dg3399.dts
+echo "=============================================================="
+cat $WRT_PATH/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/Makefile
 echo "=============================================================="
 # linux/rockchip/image/armv8.mk添加dg3399设备型号
 echo -e '
