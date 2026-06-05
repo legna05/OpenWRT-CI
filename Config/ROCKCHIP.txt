@@ -25,7 +25,8 @@ CONFIG_TARGET_rockchip_armv8=y
 #CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_xunlong_orangepi-r1-plus-lts is not set
 
 CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_firefly_roc-rk3328-cc=n
-CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_rockchip_dg3399=y
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_rockchip_dg3399=n
+CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_rumu3f_fine-3399=y
 
 #WIFI驱动
 CONFIG_PACKAGE_kmod-mt7915e=y
