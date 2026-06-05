@@ -16,8 +16,8 @@ cat $WRT_PATH/package/boot/uboot-rockchip/src/configs/dg3399-rk3399_defconfig
 echo "=============================================================="
 cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399-u-boot.dtsi     $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-dg3399-u-boot.dtsi
 echo "=============================================================="
-mkdir -p $WRT_PATH/package/boot/uboot-rockchip/src/dts/upstream/src/arm64/rockchip
-cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399.dts             $WRT_PATH/package/boot/uboot-rockchip/src/dts/upstream/src/arm64/rockchip/rk3399-dg3399.dts
+# mkdir -p $WRT_PATH/package/boot/uboot-rockchip/src/dts/upstream/src/arm64/rockchip
+cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399.dts             $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-dg3399.dts
 echo "=============================================================="
 
 # 内核相关
