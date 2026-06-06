@@ -17,12 +17,12 @@ echo "=============================================================="
 cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399-u-boot.dtsi     $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-dg3399-u-boot.dtsi
 # mkdir -p $WRT_PATH/package/boot/uboot-rockchip/src/dts/upstream/src/arm64/rockchip
 cp -f $DTS_PATH/uboot-rockchip/rk3399-dg3399.dts             $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/rk3399-dg3399.dts
-cat $WRT_PATH/package/boot/uboot-rockchip/src/arch/arm/dts/Makefile
 
 # 内核相关
 cp -f $DTS_PATH/kernel-rockchip/rk3399-dg3399.dts            $WRT_PATH/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3399-dg3399.dts
+cp -f $DTS_PATH/kernel-rockchip/052-v6.19-arm64-dts-rockchip-Add-devicetree-for-the-FriendlyElec-Na.patch            $WRT_PATH/target/linux/rockchip/patches-6.18/052-v6.19-arm64-dts-rockchip-Add-devicetree-for-the-FriendlyElec-Na.patch
 echo "=============================================================="
-cat $WRT_PATH/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/Makefile
+cat $WRT_PATH/target/linux/rockchip/patches-6.18/052-v6.19-arm64-dts-rockchip-Add-devicetree-for-the-FriendlyElec-Na.patch
 echo "=============================================================="
 # linux/rockchip/image/armv8.mk添加dg3399设备型号
 echo -e '
