@@ -6,6 +6,7 @@ PKG_PATH="$GITHUB_WORKSPACE/wrt/package/"
 FEEDS_PATH="$GITHUB_WORKSPACE/wrt/feeds/"
 
 cd $FEEDS_PATH
+ls -alh
 
 #修改argon主题字体和颜色
 if [ -d *"argon"* ]; then
