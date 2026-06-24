@@ -164,7 +164,6 @@ jobs:
 
       - name: Diy Step 1
         run: |
-          cd ./wrt/package/
           $GITHUB_WORKSPACE/Scripts/diy_p1.sh
 
       - name: Update Feeds
@@ -174,7 +173,6 @@ jobs:
 
       - name: Diy Step 2
         run: |
-          cd ./wrt/package/
           $GITHUB_WORKSPACE/Scripts/diy_p2.sh
 
       - name: install Feeds
@@ -184,13 +182,14 @@ jobs:
 
       - name: Diy Step 3
         run: |
-          cd ./wrt/package/
           $GITHUB_WORKSPACE/Scripts/diy_p3.sh
-          $GITHUB_WORKSPACE/Scripts/Settings.sh
 
       - name: Custom Settings
         run: |
           cd ./wrt/
+          
+          $GITHUB_WORKSPACE/Scripts/Settings.sh
+          $GITHUB_WORKSPACE/Scripts/Handles.sh
           
           if [[ "${WRT_CONFIG,,}" == *"test"* ]]; then
             cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
@@ -204,14 +203,12 @@ jobs:
         if: env.WRT_TEST != 'true'
         run: |
           cd ./wrt/
-
           make download -j$(nproc)
 
       - name: Compile Firmware
         if: env.WRT_TEST != 'true'
         run: |
           cd ./wrt/
-
           make -j$(nproc) || make -j1 V=s
 
       - name: Machine Information
