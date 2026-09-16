@@ -89,3 +89,9 @@ install_smartdns() {
 }
 
 install_smartdns
+
+# remove v2ray-geodata package from feeds
+rm -rf $PARENT_DIR/wrt/feeds/packages/net/v2ray-geodata
+
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 $PARENT_DIR/wrt/package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata $PARENT_DIR/wrt/package/v2ray-geodata
