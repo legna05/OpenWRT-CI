@@ -60,5 +60,32 @@ wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applicatio
 mkdir -p $package_path/parted
 wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
 
-# ARGON_DIR="$PARENT_DIR/wrt/feeds/theme_argon/luci-app-argon-config"
-# sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" "$ARGON_DIR/root/etc/config/argon" && echo "theme-argon has been fixed!"
+install_smartdns() {
+    echo "安装 SmartDNS"
+    local WORKINGDIR="$PARENT_DIR/wrt/feeds/packages/net/smartdns"
+    mkdir -p "$WORKINGDIR"
+    rm -rf "$WORKINGDIR"/*
+
+    wget -q https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O "$WORKINGDIR/master.zip"
+    unzip -q "$WORKINGDIR/master.zip" -d "$WORKINGDIR"
+    mv "$WORKINGDIR/openwrt-smartdns-master/"* "$WORKINGDIR/"
+    rmdir "$WORKINGDIR/openwrt-smartdns-master"
+    rm "$WORKINGDIR/master.zip"
+    sed -i 's/^PKG_MIRROR_HASH:=.*/PKG_MIRROR_HASH:=skip/' "$WORKINGDIR"/Makefile
+    cat "$WORKINGDIR"/Makefile | grep PKG_MIRROR_HASH
+
+    local LUCIBRANCH="master"
+    local LUCI_WD="$PARENT_DIR/wrt/feeds/luci/applications/luci-app-smartdns"
+    mkdir -p "$LUCI_WD"
+    rm -rf "$LUCI_WD"/*
+
+    wget -q "https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip" -O "$LUCI_WD/${LUCIBRANCH}.zip"
+    unzip -q "$LUCI_WD/${LUCIBRANCH}.zip" -d "$LUCI_WD"
+    mv "$LUCI_WD/luci-app-smartdns-${LUCIBRANCH}/"* "$LUCI_WD/"
+    rmdir "$LUCI_WD/luci-app-smartdns-${LUCIBRANCH}"
+    rm "$LUCI_WD/${LUCIBRANCH}.zip"
+
+    echo "SmartDNS 安装完成"
+}
+
+install_smartdns
