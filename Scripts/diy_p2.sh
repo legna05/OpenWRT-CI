@@ -11,10 +11,3 @@ $feeds_path install -a -f -p gecoosac
 $feeds_path install -a -f -p ddns_go
 $feeds_path install -a -f -p socat
 $feeds_path install -a -f -p theme_argon
-
-PARENT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-# remove v2ray-geodata package from feeds
-rm -rf $PARENT_DIR/wrt/feeds/packages/net/v2ray-geodata
-rm -rf $PARENT_DIR/wrt/feeds/packages/net/mosdns
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 $PARENT_DIR/wrt/package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata $PARENT_DIR/wrt/package/v2ray-geodata
