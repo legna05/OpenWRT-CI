@@ -33,6 +33,6 @@ fi
 ARGON_PATH=$FEEDS_PATH/theme_argon/luci-app-argon-config/root/etc/config/argon
 if [ -f "$RUST_FILE" ]; then
   echo "start process argon config"
-  sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/"
+  sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" $ARGON_PATH
   echo "luci-theme-argon has been fixed!"
 fi
