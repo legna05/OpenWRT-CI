@@ -43,6 +43,9 @@ fi
 # TTYD 免登录
 sed -i 's|/bin/login|/bin/login -f root|g' $PARENT_DIR/wrt/feeds/packages/utils/ttyd/files/ttyd.config
 
+# Set the default password for the 'root' user (change empty password to 'password')
+sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' $PARENT_DIR/wrt/package/base-files/files/etc/shadow
+
 # netspeedtest
 netspeedtest_path="$PARENT_DIR/wrt/package/luci-app-netspeedtest"
 git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/luci-app-netspeedtest.git $netspeedtest_path

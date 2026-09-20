@@ -44,4 +44,6 @@ for repo in "${repos[@]}"; do
     fi
 done
 
+cat $FEEDS_PATH
+
 
