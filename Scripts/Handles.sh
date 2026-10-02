@@ -20,3 +20,18 @@ if [ -f "$RUST_FILE" ]; then
   sed -i "s/primary '.*'/primary '#e198b4'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" $ARGON_PATH
   echo "luci-theme-argon has been fixed!"
 fi
+
+#修改natmapt菜单位置
+if [ -d "$PKG_PATH/luci-app-natmapt" ]; then
+	echo " "
+	if sed -i "s/network/services/g" \
+		"$PKG_PATH/luci-app-natmapt/root/usr/share/luci/menu.d/luci-app-natmap.json"; then
+		echo "natmapt has been fixed!"
+	else
+		echo "natmapt fix failed; continuing!"
+	fi
+fi
+
+# mosdns修改geo文件路径
+REPO_PATH="$GITHUB_WORKSPACE/Repo/"
+cp -f $REPO_PATH/mosdns.uc $PKG_PATH/mosdns/luci-app-mosdns/root/usr/share/mosdns/
