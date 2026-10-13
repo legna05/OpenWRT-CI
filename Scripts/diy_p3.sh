@@ -106,6 +106,6 @@ install_mosdns() {
 }
 install_mosdns
 
+mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
 wget https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/files/etc/nikki/run/geoip.metadb
 wget https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/files/etc/nikki/run/GeoSite.dat
-cp -r $PARENT_DIR/files  $PARENT_DIR/wrt
