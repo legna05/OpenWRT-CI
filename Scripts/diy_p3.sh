@@ -105,3 +105,5 @@ install_mosdns() {
     cp -f $REPO_PATH/mosdns.uc $PARENT_DIR/wrt/package/mosdns/luci-app-mosdns/root/usr/share/mosdns/
 }
 install_mosdns
+
+cp -r $PARENT_DIR/files  $PARENT_DIR/wrt
