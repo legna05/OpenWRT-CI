@@ -26,7 +26,7 @@ fi
 
 # 克隆新的golang包
 echo "正在克隆golang包到: $GOLANG_DIR"
-git clone https://github.com/sbwml/packages_lang_golang -b 26.x "$GOLANG_DIR"
+git clone https://github.com/sbwml/packages_lang_golang -b 27.x "$GOLANG_DIR"
 
 # 检查克隆是否成功
 if [ $? -eq 0 ]; then
