@@ -117,8 +117,8 @@ mkdir $PARENT_DIR/wrt/files//usr/sbin
 cp  $PARENT_DIR/files/sbe/sbe-wifi-boot.sh   $PARENT_DIR/wrt/files/usr/sbin/
 chmod +x $PARENT_DIR/wrt/files//usr/sbin/sbe-wifi-boot.sh
 
-mkdir -p $PARENT_DIR/wrt/files/etc/rc.d/
-cd $PARENT_DIR/wrt/files/etc/rc.d/
+mkdir -p $PARENT_DIR/wrt/files/etc/rc.d
+cd $PARENT_DIR/wrt/files/etc/rc.d
 ln -sf ../init.d/sbe-wifi-boot S95sbe-wifi-boot
 cd -
 
