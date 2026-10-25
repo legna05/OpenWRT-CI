@@ -110,10 +110,10 @@ mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
 
-mkdir -p $PARENT_DIR/wrt/files//etc/init.d
+mkdir -p $PARENT_DIR/wrt/files/etc/init.d
 cp  $PARENT_DIR/files/sbe/sbe-wifi-boot      $PARENT_DIR/wrt/files/etc/init.d/
 chmod +x $PARENT_DIR/wrt/files//etc/init.d/sbe-wifi-boot
-mkdir $PARENT_DIR/wrt/files//usr/sbin
+mkdir -p $PARENT_DIR/wrt/files/usr/sbin
 cp  $PARENT_DIR/files/sbe/sbe-wifi-boot.sh   $PARENT_DIR/wrt/files/usr/sbin/
 chmod +x $PARENT_DIR/wrt/files//usr/sbin/sbe-wifi-boot.sh
 
