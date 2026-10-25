@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# 将 ntp.jdcloud.com 添加到 rebind_domain 白名单
+uci add_list dhcp.@dnsmasq[0].rebind_domain='ntp.jdcloud.com'
+
+# 提交配置更改
+uci commit dhcp
+
+# 重启 dnsmasq 服务使配置生效
+service dnsmasq restart

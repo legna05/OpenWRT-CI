@@ -4,6 +4,9 @@
 PARENT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 echo "PARENT_DIR=$PARENT_DIR"
 
+# 定义目标文件路径（修改为实际路径）
+package_path="$PARENT_DIR/wrt/package"
+
 # 设置目标目录（默认位置）
 GOLANG_DIR="$PARENT_DIR/wrt/feeds/packages/lang/golang"
 echo "GOLANG_DIR=$GOLANG_DIR"
@@ -26,7 +29,7 @@ fi
 
 # 克隆新的golang包
 echo "正在克隆golang包到: $GOLANG_DIR"
-git clone https://github.com/sbwml/packages_lang_golang -b 26.x "$GOLANG_DIR"
+git clone https://github.com/sbwml/packages_lang_golang -b 27.x "$GOLANG_DIR"
 
 # 检查克隆是否成功
 if [ $? -eq 0 ]; then
@@ -46,22 +49,25 @@ sed -i 's|/bin/login|/bin/login -f root|g' $PARENT_DIR/wrt/feeds/packages/utils/
 # Set the default password for the 'root' user (change empty password to 'password')
 sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' $PARENT_DIR/wrt/package/base-files/files/etc/shadow
 
-# netspeedtest
-netspeedtest_path="$PARENT_DIR/wrt/package/luci-app-netspeedtest"
-git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/luci-app-netspeedtest.git $netspeedtest_path
-pushd $netspeedtest_path
-umask 022
-git checkout
-popd
+install_speedtest() {
+  # netspeedtest
+  netspeedtest_path="$PARENT_DIR/wrt/package/luci-app-netspeedtest"
+  git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/luci-app-netspeedtest.git $netspeedtest_path
+  pushd $netspeedtest_path
+  umask 022
+  git checkout
+  popd
+}
+install_speedtest
 
-# 定义目标文件路径（修改为实际路径）
-package_path="$PARENT_DIR/wrt/package"
-
-# diskman安装
-mkdir -p $package_path/luci-app-diskman
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
-mkdir -p $package_path/parted
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
+install_diskman() {
+  # diskman安装
+  mkdir -p $package_path/luci-app-diskman
+  wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
+  mkdir -p $package_path/parted
+  wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
+}
+install_diskman
 
 install_smartdns() {
     echo "安装 SmartDNS"
@@ -96,16 +102,17 @@ install_smartdns() {
 
 install_mosdns() {
     # remove v2ray-geodata package from feeds
-    rm -rf $PARENT_DIR/wrt/feeds/packages/net/v2ray-geodata
     rm -rf $PARENT_DIR/wrt/feeds/packages/net/mosdns
     git clone https://github.com/sbwml/luci-app-mosdns -b v5 $PARENT_DIR/wrt/package/mosdns
-    git clone https://github.com/sbwml/v2ray-geodata $PARENT_DIR/wrt/package/v2ray-geodata
     # mosdns修改geo文件路径
     REPO_PATH="$GITHUB_WORKSPACE/Repo/"
     cp -f $REPO_PATH/mosdns.uc $PARENT_DIR/wrt/package/mosdns/luci-app-mosdns/root/usr/share/mosdns/
 }
 install_mosdns
 
-mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
-wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
-wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
+init_mosdns() {
+  mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
+  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
+  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
+}
+init_mosdns

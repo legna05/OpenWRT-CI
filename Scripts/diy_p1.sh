@@ -30,10 +30,8 @@ repos=(
     "passwall_luci     https://github.com/Openwrt-Passwall/openwrt-passwall.git;main"
     "openclash         https://github.com/vernesong/OpenClash.git;master"
     "nikki             https://github.com/nikkinikki-org/OpenWrt-nikki.git;main"
-    "gecoosac          https://github.com/laipeng668/luci-app-gecoosac.git;main"
     "ddns_go           https://github.com/sirpdboy/luci-app-ddns-go.git;main"
     "socat             https://github.com/chenmozhijin/luci-app-socat.git;main"
-    "theme_argon       https://github.com/sbwml/luci-theme-argon.git;openwrt-25.12"
 )
 
 # 批量添加

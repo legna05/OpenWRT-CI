@@ -258,13 +258,13 @@ function update_geodat() {
 	}
 
 	if (geoip_updated) {
-		exec_sys(`mv -f "${tmpdir}/geoip.dat" "/etc/nikki/run/GeoIP.dat"`);
-		exec_sys(`ln -sf "/etc/nikki/run/GeoIP.dat" "${v2dat_dir}/geoip.dat"`);
+		exec_sys(`mv -f "${tmpdir}/geoip.dat" "/etc/openclash/GeoIP.dat"`);
+		exec_sys(`ln -sf "/etc/openclash/GeoIP.dat" "${v2dat_dir}/geoip.dat"`);
 	}
 
 	if (geosite_updated) {
-		exec_sys(`mv -f "${tmpdir}/geosite.dat" "/etc/nikki/run/GeoSite.dat"`);
-		exec_sys(`ln -sf "/etc/nikki/run/GeoSite.dat" "${v2dat_dir}/geosite.dat"`);
+		exec_sys(`mv -f "${tmpdir}/geosite.dat" "/etc/openclash/GeoSite.dat"`);
+		exec_sys(`ln -sf "/etc/openclash/GeoSite.dat" "${v2dat_dir}/geosite.dat"`);
 	}
 
 	exec_sys(`rm -rf "${tmpdir}"`);
