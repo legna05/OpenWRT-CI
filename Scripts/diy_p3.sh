@@ -99,7 +99,7 @@ install_mosdns() {
     rm -rf $PARENT_DIR/wrt/feeds/packages/net/v2ray-geodata
     rm -rf $PARENT_DIR/wrt/feeds/packages/net/mosdns
     git clone https://github.com/sbwml/luci-app-mosdns -b v5 $PARENT_DIR/wrt/package/mosdns
-    git clone https://github.com/sbwml/v2ray-geodata $PARENT_DIR/wrt/package/v2ray-geodata
+    # git clone https://github.com/sbwml/v2ray-geodata $PARENT_DIR/wrt/package/v2ray-geodata
     # mosdns修改geo文件路径
     REPO_PATH="$GITHUB_WORKSPACE/Repo/"
     cp -f $REPO_PATH/mosdns.uc $PARENT_DIR/wrt/package/mosdns/luci-app-mosdns/root/usr/share/mosdns/
@@ -109,3 +109,16 @@ install_mosdns
 mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
+
+mkdir -p $PARENT_DIR/wrt/files//etc
+cp  $PARENT_DIR/files/sbe/sbe-wifi-boot      $PARENT_DIR/wrt/files//etc/init.d/
+chmod +x $PARENT_DIR/wrt/files//etc/init.d/sbe-wifi-boot
+mkdir $PARENT_DIR/wrt/files//usr/sbin/
+cp  $PARENT_DIR/files/sbe/sbe-wifi-boot.sh   $PARENT_DIR/wrt/files//usr/sbin/
+chmod +x $PARENT_DIR/wrt/files//usr/sbin/sbe-wifi-boot.sh
+
+mkdir -p $PARENT_DIR/wrt/files/etc/rc.d/
+cd $PARENT_DIR/wrt/files/etc/rc.d/
+ln -sf ../init.d/sbe-wifi-boot S95sbe-wifi-boot
+cd -
+
