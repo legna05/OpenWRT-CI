@@ -122,3 +122,24 @@ cd $PARENT_DIR/wrt/files/etc/rc.d
 ln -sf ../init.d/sbe-wifi-boot S95sbe-wifi-boot
 cd -
 
+modify_sbe1v1k_mtb() {
+  DTS="$1"
+  [ -z "$DTS" ] && { echo "用法: $0 <dts文件>"; exit 1; }
+
+  cp "$DTS" "${DTS}.bak"
+
+  awk '
+      /^&rpm_requests[[:space:]]*\{/ { skip=1 }
+      skip {
+          if (/^};[[:space:]]*$/) { skip=0 }
+          next
+      }
+      { print }
+  ' "$DTS" > "${DTS}.tmp" && mv "${DTS}.tmp" "$DTS"
+
+  echo "完成，备份为 ${DTS}.bak"
+  cat "$DTS"
+}
+
+modify_sbe1v1k_mtb  $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
+
