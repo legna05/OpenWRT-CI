@@ -164,7 +164,6 @@ rm -f "$MAPFILE"
 wifi down >/dev/null 2>&1
 sleep 3
 wifi up >/dev/null 2>&1
-sleep 25
 
 check() {
         # 只统计"用户启用的 AP 接口"，被禁用的不算失败
@@ -184,15 +183,19 @@ check() {
 }
 
 k=0
-while [ $k -lt 6 ]; do
+waited=0
+while [ $k -lt 9 ]; do
         bad=$(check)
         if [ "$bad" -le 0 ]; then
-                LOG "all AP up: $(ls /sys/class/net/ | grep ap0 | tr '\n' ' ')"
+                LOG "all AP up after ${waited}s: $(ls /sys/class/net/ | grep ap0 | tr '\n' ' ')"
                 exit 0
         fi
         sleep 10
         k=$((k + 1))
+        waited=$((waited + 10))
+        LOG "  round $k/9 done, waited ${waited}s, still $bad AP down"
 done
+LOG "  timeout: waited ${waited}s, $bad AP still down"
 
 retry=1
 while [ $retry -le 2 ]; do
