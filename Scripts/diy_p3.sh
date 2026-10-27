@@ -141,8 +141,10 @@ modify_sbe1v1k_mtb() {
   cat "$DTS"
 }
 
-modify_sbe1v1k_mtb  $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
+# modify_sbe1v1k_mtb  $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
 
-cp -f  $PARENT_DIR/Repo/patch/302-ath12k-allow-dt-radio-count-override.patch  $PARENT_DIR/wrt/package/kernel/mac80211/patches/ath12k
-cat $PARENT_DIR/wrt/package/kernel/mac80211/patches/ath12k/302-ath12k-allow-dt-radio-count-override.patch
+#cp -f  $PARENT_DIR/Repo/patch/302-ath12k-allow-dt-radio-count-override.patch  $PARENT_DIR/wrt/package/kernel/mac80211/patches/ath12k
+#cat $PARENT_DIR/wrt/package/kernel/mac80211/patches/ath12k/302-ath12k-allow-dt-radio-count-override.patch
 
+cat $PARENT_DIR/Repo/dts > $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
+cat $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
