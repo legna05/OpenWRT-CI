@@ -415,7 +415,7 @@
 			compatible = "pci17cb,1109";
 			reg = <0x0 0x0 0x0 0x0 0x0>;
 			qcom,calibration-variant = "Askey-SBE1V1K_1";
-            qcom,num-radios = <1>;
+			qcom,num-radios = <1>;
 
 			nvmem-cells = <&ethaddr (-3)>;
 			nvmem-cell-names = "mac-address";
