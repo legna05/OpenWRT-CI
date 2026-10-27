@@ -45,7 +45,7 @@ if [ -z "$(ls /sys/class/ieee80211/ 2>/dev/null)" ]; then
         LOG "no phy after 120s, give up"
         exit 0
 fi
-sleep 6
+sleep 8
 LOG "phy ready: $(ls /sys/class/ieee80211/ | tr '\n' ' ')"
 
 # ---------- 1. 用户关掉无线就不要动它 ----------
@@ -181,6 +181,8 @@ check() {
         done
         echo $((want - up))
 }
+
+sleep 30
 
 k=0
 waited=0
