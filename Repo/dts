@@ -154,7 +154,7 @@
  * 且无任何 reserved 子段冲突 (子段从 9ec00000 才开始)。
  */
 &{/chosen} {
-	bootargs-append = " cma=512M@0x50000000 pstore_blk.blkdev=/dev/mmcblk0p33 pstore_blk.total_size=16384 pstore_blk.kmsg_size=4096 pstore_blk.console_size=8192 pstore_blk.pmsg_size=2048";
+	bootargs-append = " cma=512M@0x50000000 pstore_blk.blkdev=/dev/mmcblk0p33 pstore_blk.total_size=16384 pstore_blk.kmsg_size=4096 pstore_blk.console_size=8192 pstore_blk.pmsg_size=2048 root=PARTLABEL=rootfs";
 };
 
 &pwm {
