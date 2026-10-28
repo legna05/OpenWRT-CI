@@ -15,6 +15,36 @@
 		led-upgrade = &led_blue;
 	};
 
+	/*
+	 * Persistent kernel crash log (ramoops / pstore).
+	 *
+	 * 本板 2GB DDR: 0x40000000 - 0xBFFFFFFF。
+	 * 地址选择依据实际 /proc/iomem:
+	 *   4dc00000-bfffffff : System RAM
+	 *     9ec00000-aebfffff : reserved     (原 CMA 256MB)
+	 *     bd600000-bf9fffff : reserved
+	 * 0xB0000000 落在 aec00000-bd5fffff 的干净 RAM 中段,
+	 * 上下各距最近 reserved 边界 80MB / 210MB, 无溢出风险。
+	 *
+	 * 注意: 不要加 "no-map", 否则部分 bootloader 会 warm reset 时清零该区域。
+	 */
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		ramoops@b0000000 {
+			compatible = "ramoops";
+			reg = <0x0 0xb0000000 0x0 0x00100000>;	/* 1MB */
+
+			record-size  = <0x00020000>;	/* 128KB 每条 oops/dmesg 记录 */
+			console-size = <0x00040000>;	/* 256KB 控制台输出 */
+			pmsg-size    = <0x00020000>;	/* 128KB 用户态 pmsg */
+			ftrace-size  = <0x00020000>;	/* 128KB ftrace */
+			ecc-size     = <16>;
+		};
+	};
+
 	regulator_fixed_3p3: s3300 {
 		compatible = "regulator-fixed";
 		regulator-min-microvolt = <3300000>;
@@ -142,8 +172,13 @@
 	};
 };
 
+/*
+ * 方案 B: 把 CMA 固定到 0x50000000 - 0x6FFFFFFF (512MB),
+ * 该区间落在 4dc00000-bfffffff 的 System RAM 内,
+ * 且无任何 reserved 子段冲突 (子段从 9ec00000 才开始)。
+ */
 &{/chosen} {
-	bootargs-append = " cma=256M";
+	bootargs-append = " cma=512M@0x50000000";
 };
 
 &pwm {
