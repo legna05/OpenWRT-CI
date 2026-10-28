@@ -20,6 +20,16 @@
 # （5G 固定 80MHz，因为 160MHz 会触发 DFS-CAC，ath12k 上 CAC 不会结束）。
 # 设置好后写一个标记文件，此后永不再覆盖用户设置。
 
+dns_rebind_domain() {
+    echo "dns_rebind_domain"
+    # 将 cn.ntp.org.cn 加入白名单
+    uci add_list dhcp.@dnsmasq[0].rebind_domain='cn.ntp.org.cn'
+    # 提交并重启 dnsmasq 使配置生效
+    uci commit dhcp
+    /etc/init.d/dnsmasq restart
+}
+dns_rebind_domain
+
 TAG="sbe-wifi"
 LOG() { logger -t "$TAG" "$*"; }
 
