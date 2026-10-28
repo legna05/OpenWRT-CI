@@ -15,12 +15,6 @@
 		led-upgrade = &led_blue;
 	};
 
-	/*
-	 * 已移除 ramoops 节点。
-	 * 因 PSCIv1.0 复位为 Cold Reset，会清空 RAM，ramoops 无法保留日志。
-	 * 改用 pstore/blk 将日志持久化到 eMMC 分区。
-	 */
-
 	regulator_fixed_3p3: s3300 {
 		compatible = "regulator-fixed";
 		regulator-min-microvolt = <3300000>;
@@ -154,7 +148,7 @@
  * 且无任何 reserved 子段冲突 (子段从 9ec00000 才开始)。
  */
 &{/chosen} {
-	bootargs-append = " cma=512M@0x50000000 pstore_blk.blkdev=/dev/mmcblk0p33 pstore_blk.total_size=16384 pstore_blk.kmsg_size=4096 pstore_blk.console_size=8192 pstore_blk.pmsg_size=2048";
+	bootargs-append = " cma=512M@0x50000000 pstore_blk.blkdev=/dev/mmcblk0p33 pstore_blk.total_size=16777216 pstore_blk.kmsg_size=4096 pstore_blk.console_size=8192 pstore_blk.pmsg_size=2048";
 };
 
 &pwm {
