@@ -7,7 +7,6 @@ CONFIG_TARGET_DEVICE_qualcommbe_ipq95xx_DEVICE_askey_sbe1v1k=y
 #灾难日志
 CONFIG_PACKAGE_kmod-pstore-blk=y
 CONFIG_PACKAGE_kmod-pstore=y
-CONFIG_PACKAGE_kmod-netconsole=y
 CONFIG_PSTORE=y
 CONFIG_PSTORE_BLK=y
 CONFIG_PSTORE_CONSOLE=y
