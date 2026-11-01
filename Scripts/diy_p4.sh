@@ -13,12 +13,14 @@ if [ -d "$PARENT_DIR/sbe1v1k/overlay" ]; then
 fi
 
 log "applying tree patches"
+cd "$PARENT_DIR/wrt"
 for p in "$PARENT_DIR/sbe1v1k"/patches/tree/*.patch; do
 	[ -e "$p" ] || continue
 	git apply --check "$p" || die "does not apply: $(basename "$p")"
 	git apply "$p"
 	echo "apply for   :   $(basename "$p")"
 done
+cd -
 
 # ath12k patches are applied by the mac80211 package build itself.
 for p in "$PARENT_DIR/sbe1v1k"/patches/mac80211/*.patch; do
