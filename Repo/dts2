@@ -159,6 +159,10 @@
 	};
 };
 
+&{/chosen} {
+	bootargs-append = " cma=256M";
+};
+
 &pwm {
 	pinctrl-0 = <&pwm_pins>;
 	pinctrl-names = "default";
