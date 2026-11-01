@@ -140,6 +140,7 @@ jobs:
           git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
           
           cd ./wrt
+          git fetch origin da63f7d6ac4207e534c9b92ba3d2b555a8edce8d
           git checkout da63f7d6ac4207e534c9b92ba3d2b555a8edce8d
 
           WRT_HASH=$(git rev-parse HEAD)
