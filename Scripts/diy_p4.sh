@@ -1,8 +1,12 @@
 #!/bin/bash
 
+set -eu
+
 # 获取脚本所在目录的上一级目录
 PARENT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 echo "PARENT_DIR=$PARENT_DIR"
+
+die() { echo "error: $*" >&2; exit 1; }
 
 # overlay/ holds files added to the tree verbatim (new kernel or package
 # patches); patches/tree/ changes files the tree already has.
@@ -16,7 +20,7 @@ echo "applying tree patches"
 cd "$PARENT_DIR/wrt"
 for p in "$PARENT_DIR/sbe1v1k"/patches/tree/*.patch; do
 	[ -e "$p" ] || continue
-	git apply --check "$p" || (echo "does not apply: $(basename "$p")" && exit 1 )
+	git apply --check "$p" || die "does not apply: $(basename "$p")"
 	git apply "$p"
 	echo "apply for   :   $(basename "$p")"
 done
