@@ -16,7 +16,7 @@ echo "applying tree patches"
 cd "$PARENT_DIR/wrt"
 for p in "$PARENT_DIR/sbe1v1k"/patches/tree/*.patch; do
 	[ -e "$p" ] || continue
-	git apply --check "$p" || echo "does not apply: $(basename "$p")" && exit 1
+	git apply --check "$p" || (echo "does not apply: $(basename "$p")" && exit 1 )
 	git apply "$p"
 	echo "apply for   :   $(basename "$p")"
 done
