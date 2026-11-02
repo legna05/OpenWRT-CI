@@ -22,7 +22,7 @@ for p in "$PARENT_DIR/sbe1v1k"/patches/tree/*.patch; do
 	[ -e "$p" ] || continue
 	git apply --check "$p" || die "does not apply: $(basename "$p")"
 	git apply "$p"
-	echo "apply for   :   $(basename "$p")"
+	echo "    apply for   :   $(basename "$p")"
 done
 cd -
 
@@ -30,5 +30,23 @@ cd -
 for p in "$PARENT_DIR/sbe1v1k"/patches/mac80211/*.patch; do
 	[ -e "$p" ] || continue
 	cp "$p" "$PARENT_DIR/wrt"/package/kernel/mac80211/patches/ath12k/
-	echo "move patch mac80211   :   $(basename "$p")"
+	echo "    move patch mac80211   :   $(basename "$p")"
+done
+
+log "staging files/"
+cd "$PARENT_DIR/wrt"
+rm -rf files
+mkdir files
+cp -a "$PARENT_DIR/sbe1v1k/files/." files/
+find files \( -name '._*' -o -name .DS_Store \) -delete
+
+
+# wifi-scripts installs files-ucode/ straight from the package directory,
+# so its fixes are patched into the tree rather than via patches/.
+for p in "$PARENT_DIR/sbe1v1k"/patches/wifi-scripts/*.patch; do
+	[ -e "$p" ] || continue
+	patch -p1 -N -F0 -s --no-backup-if-mismatch \
+		-d package/network/config/wifi-scripts < "$p" ||
+		die "does not apply: wifi-scripts/$(basename "$p")"
+	echo "    wifi-scripts/$(basename "$p")"
 done
