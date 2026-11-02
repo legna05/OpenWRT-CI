@@ -25,6 +25,16 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
 
+# 修改时区
+sed -i "s/timezone='.*'/timezone='CST-8'/g" $CFG_FILE
+sed -i "s/zonename='.*'/zonename='Asia/Shanghai'/g" $CFG_FILE
+
+# 修改ntp服务器
+sed -i "s/'time.apple.com'/'ntp.ntsc.ac.cn'/g" $CFG_FILE
+sed -i "s/'time1.google.com'/'ntp.aliyun.com'/g" $CFG_FILE
+sed -i "s/'time.cloudflare.com'/'ntp.tencent.com'/g" $CFG_FILE
+sed -i "s/'pool.ntp.org'/'ntp.jdcloud.com'/g" $CFG_FILE
+
 #配置文件修改
 echo "CONFIG_PACKAGE_luci=y" >> ./.config
 echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
