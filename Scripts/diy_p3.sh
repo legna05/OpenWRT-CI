@@ -110,37 +110,6 @@ mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
 
-mkdir -p $PARENT_DIR/wrt/files/etc/init.d
-cp  $PARENT_DIR/files/sbe/sbe-wifi-boot      $PARENT_DIR/wrt/files/etc/init.d/
-chmod +x $PARENT_DIR/wrt/files//etc/init.d/sbe-wifi-boot
-mkdir -p $PARENT_DIR/wrt/files/usr/sbin
-cp  $PARENT_DIR/files/sbe/sbe-wifi-boot.sh   $PARENT_DIR/wrt/files/usr/sbin/
-chmod +x $PARENT_DIR/wrt/files//usr/sbin/sbe-wifi-boot.sh
-
-mkdir -p $PARENT_DIR/wrt/files/etc/rc.d
-cd $PARENT_DIR/wrt/files/etc/rc.d
-ln -sf ../init.d/sbe-wifi-boot S95sbe-wifi-boot
-cd -
-
-modify_sbe1v1k_mtb() {
-  DTS="$1"
-  [ -z "$DTS" ] && { echo "用法: $0 <dts文件>"; exit 1; }
-
-  cp "$DTS" "${DTS}.bak"
-
-  awk '
-      /^&rpm_requests[[:space:]]*\{/ { skip=1 }
-      skip {
-          if (/^};[[:space:]]*$/) { skip=0 }
-          next
-      }
-      { print }
-  ' "$DTS" > "${DTS}.tmp" && mv "${DTS}.tmp" "$DTS"
-
-  echo "完成，备份为 ${DTS}.bak"
-  cat "$DTS"
-}
-
 # modify_sbe1v1k_mtb  $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
 
 # cp -f  $PARENT_DIR/Repo/patch/302-ath12k-allow-dt-radio-count-override.patch  $PARENT_DIR/wrt/package/kernel/mac80211/patches/ath12k

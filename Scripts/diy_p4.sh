@@ -34,6 +34,10 @@ for p in "$PARENT_DIR/sbe1v1k"/patches/mac80211/*.patch; do
 done
 
 echo "staging files/"
+chmod +x "$PARENT_DIR/sbe1v1k/files/etc/init.d/*"
+chmod +x "$PARENT_DIR/sbe1v1k/files/etc/uci-defaults/*"
+chmod +x "$PARENT_DIR/sbe1v1k/files/user/sbin/*"
+
 cd "$PARENT_DIR/wrt"
 rm -rf files
 mkdir files
