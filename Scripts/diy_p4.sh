@@ -33,7 +33,7 @@ for p in "$PARENT_DIR/sbe1v1k"/patches/mac80211/*.patch; do
 	echo "    move patch mac80211   :   $(basename "$p")"
 done
 
-log "staging files/"
+echo "staging files/"
 cd "$PARENT_DIR/wrt"
 rm -rf files
 mkdir files
