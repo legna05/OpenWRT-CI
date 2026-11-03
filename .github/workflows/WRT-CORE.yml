@@ -199,9 +199,6 @@ jobs:
       - name: Diy Step 3
         run: $GITHUB_WORKSPACE/Scripts/diy_p3.sh
 
-      - name: Diy Step 4
-        run: $GITHUB_WORKSPACE/Scripts/diy_p4.sh
-
       - name: Custom Packages
         run: |
           cd ./wrt/
