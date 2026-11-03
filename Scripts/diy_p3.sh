@@ -58,15 +58,16 @@ install_speedtest() {
   git checkout
   popd
 }
+install_speedtest
 
-
- install_diskman() {
+install_diskman() {
   # diskman安装
   mkdir -p $package_path/luci-app-diskman
   wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
   mkdir -p $package_path/parted
   wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
 }
+install_diskman
 
 install_smartdns() {
     echo "安装 SmartDNS"
@@ -109,9 +110,11 @@ install_mosdns() {
     REPO_PATH="$GITHUB_WORKSPACE/Repo/"
     cp -f $REPO_PATH/mosdns.uc $PARENT_DIR/wrt/package/mosdns/luci-app-mosdns/root/usr/share/mosdns/
 }
+install_mosdns
 
 init_mosdns() {
   mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
   wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
   wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
 }
+install_mosdns
