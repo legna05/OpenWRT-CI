@@ -13,6 +13,13 @@ if [ -f "$ARGON_PATH" ]; then
   echo "luci-theme-argon has been fixed!"
 fi
 
+#修改vantage进度条标签字体（anothaDev/luci-theme-vantage#52）
+if [ -d "$PACKAGE_PATH/luci-theme-vantage" ]; then
+	echo "fix luci-theme-vantage"
+    sed -i -e '/^\/\* progress bars: thin track/,$ { /^\.cbi-progressbar::before {/,/^}/ { s/^[[:space:]]*font: 500 var(--fs-micro)\/1\.2 var(--mono);/\tfont: inherit; line-height: normal;/; } }' \
+    "$PACKAGE_PATH/luci-theme-vantage/luci-theme-vantage/htdocs/luci-static/vantage/vantage.css"
+fi
+
 #修改natmapt菜单位置
 if [ -d "$PKG_PATH/luci-app-natmapt" ]; then
 	echo " "
