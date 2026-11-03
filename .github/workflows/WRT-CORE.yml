@@ -178,10 +178,16 @@ jobs:
           echo "1" > ./wrt/tmp/.build
           echo "restored build cache: ${{steps.cache-restore.outputs.cache-matched-key}}"
 
+      - name: Diy Step 1
+        run: $GITHUB_WORKSPACE/Scripts/diy_p1.sh
+
       - name: Update Feeds
         run: |
           cd ./wrt/
           ./scripts/feeds update -a
+
+      - name: Diy Step 2
+        run: $GITHUB_WORKSPACE/Scripts/diy_p2.sh
 
       - name: install Feeds
         run: |
