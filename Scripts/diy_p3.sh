@@ -49,13 +49,16 @@ sed -i 's|/bin/login|/bin/login -f root|g' $PARENT_DIR/wrt/feeds/packages/utils/
 # Set the default password for the 'root' user (change empty password to 'password')
 sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' $PARENT_DIR/wrt/package/base-files/files/etc/shadow
 
-# netspeedtest
-netspeedtest_path="$PARENT_DIR/wrt/package/luci-app-netspeedtest"
-git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/luci-app-netspeedtest.git $netspeedtest_path
-pushd $netspeedtest_path
-umask 022
-git checkout
-popd
+install_speedtest() {
+  # netspeedtest
+  netspeedtest_path="$PARENT_DIR/wrt/package/luci-app-netspeedtest"
+  git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/luci-app-netspeedtest.git $netspeedtest_path
+  pushd $netspeedtest_path
+  umask 022
+  git checkout
+  popd
+}
+
 
  install_diskman() {
   # diskman安装
@@ -106,10 +109,9 @@ install_mosdns() {
     REPO_PATH="$GITHUB_WORKSPACE/Repo/"
     cp -f $REPO_PATH/mosdns.uc $PARENT_DIR/wrt/package/mosdns/luci-app-mosdns/root/usr/share/mosdns/
 }
-install_mosdns
 
-mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
-wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
-wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
-
-# cat $PARENT_DIR/Repo/platform.sh > $PARENT_DIR/wrt/target/linux/qualcommbe/ipq95xx/base-files/lib/upgrade/platform.sh
+init_mosdns() {
+  mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
+  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
+  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
+}
