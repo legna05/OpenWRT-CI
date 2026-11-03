@@ -102,10 +102,8 @@ install_smartdns() {
 
 install_mosdns() {
     # remove v2ray-geodata package from feeds
-    rm -rf $PARENT_DIR/wrt/feeds/packages/net/v2ray-geodata
     rm -rf $PARENT_DIR/wrt/feeds/packages/net/mosdns
     git clone https://github.com/sbwml/luci-app-mosdns -b v5 $PARENT_DIR/wrt/package/mosdns
-    # git clone https://github.com/sbwml/v2ray-geodata $PARENT_DIR/wrt/package/v2ray-geodata
     # mosdns修改geo文件路径
     REPO_PATH="$GITHUB_WORKSPACE/Repo/"
     cp -f $REPO_PATH/mosdns.uc $PARENT_DIR/wrt/package/mosdns/luci-app-mosdns/root/usr/share/mosdns/
@@ -117,4 +115,4 @@ init_mosdns() {
   wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
   wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
 }
-install_mosdns
+init_mosdns
