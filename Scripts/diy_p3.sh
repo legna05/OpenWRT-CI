@@ -4,6 +4,9 @@
 PARENT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 echo "PARENT_DIR=$PARENT_DIR"
 
+# 定义目标文件路径（修改为实际路径）
+package_path="$PARENT_DIR/wrt/package"
+
 # 设置目标目录（默认位置）
 GOLANG_DIR="$PARENT_DIR/wrt/feeds/packages/lang/golang"
 echo "GOLANG_DIR=$GOLANG_DIR"
@@ -54,14 +57,13 @@ umask 022
 git checkout
 popd
 
-# 定义目标文件路径（修改为实际路径）
-package_path="$PARENT_DIR/wrt/package"
-
-# diskman安装
-mkdir -p $package_path/luci-app-diskman
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
-mkdir -p $package_path/parted
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
+ install_diskman() {
+  # diskman安装
+  mkdir -p $package_path/luci-app-diskman
+  wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
+  mkdir -p $package_path/parted
+  wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
+}
 
 install_smartdns() {
     echo "安装 SmartDNS"
