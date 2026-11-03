@@ -110,10 +110,4 @@ mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
 wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
 
-# modify_sbe1v1k_mtb  $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
-
-# cp -f  $PARENT_DIR/Repo/patch/302-ath12k-allow-dt-radio-count-override.patch  $PARENT_DIR/wrt/package/kernel/mac80211/patches/ath12k
-# cat $PARENT_DIR/wrt/package/kernel/mac80211/patches/ath12k/302-ath12k-allow-dt-radio-count-override.patch
-
-# cat $PARENT_DIR/Repo/dts2        > $PARENT_DIR/wrt/target/linux/qualcommbe/dts/ipq9570-sbe1v1k.dts
 # cat $PARENT_DIR/Repo/platform.sh > $PARENT_DIR/wrt/target/linux/qualcommbe/ipq95xx/base-files/lib/upgrade/platform.sh
