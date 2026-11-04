@@ -33,6 +33,7 @@ repos=(
     "ddns_go           https://github.com/sirpdboy/luci-app-ddns-go.git;main"
     "socat             https://github.com/chenmozhijin/luci-app-socat.git;main"
     "dockerman         https://github.com/lisaac/luci-app-dockerman.git;master"
+    "dockerlib         https://github.com/lisaac/luci-lib-docker.git;master"
 )
 
 # 批量添加
