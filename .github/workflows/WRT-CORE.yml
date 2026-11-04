@@ -140,6 +140,11 @@ jobs:
           git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO ./wrt/
           
           cd ./wrt
+          
+          if [[ "$WRT_SOURCE" == "immortalwrt/immortalwrt" ]]; then
+            git fetch origin da63f7d6ac4207e534c9b92ba3d2b555a8edce8d
+            git checkout da63f7d6ac4207e534c9b92ba3d2b555a8edce8d
+          fi
 
           WRT_HASH=$(git rev-parse HEAD)
           echo "WRT_HASH=$WRT_HASH" >> $GITHUB_ENV
@@ -197,6 +202,10 @@ jobs:
       - name: Diy Step 3
         run: $GITHUB_WORKSPACE/Scripts/diy_p3.sh
 
+      - name: Diy Step 4
+        if: ${{ inputs.WRT_SOURCE == 'immortalwrt/immortalwrt' }}
+        run: $GITHUB_WORKSPACE/Scripts/diy_p4.sh
+
       - name: Custom Packages
         run: |
           cd ./wrt/
@@ -212,7 +221,7 @@ jobs:
           if [[ "${WRT_CONFIG,,}" == *test* || "${WRT_CONFIG,,}" == *zn-m2* ]]; then
             cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
           else
-            cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt $GITHUB_WORKSPACE/Config/GENERAL.txt >> .config
+            cat $GITHUB_WORKSPACE/Config/GENERAL.txt $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
           fi
 
           $GITHUB_WORKSPACE/Scripts/Settings.sh

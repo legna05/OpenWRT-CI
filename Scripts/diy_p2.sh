@@ -9,3 +9,5 @@ $feeds_path install -a -f -p openclash
 $feeds_path install -a -f -p nikki
 $feeds_path install -a -f -p ddns_go
 $feeds_path install -a -f -p socat
+$feeds_path install -a -f -p dockerman
+$feeds_path install -a -f -p dockerlib

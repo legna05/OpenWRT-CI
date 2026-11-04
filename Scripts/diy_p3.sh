@@ -63,9 +63,9 @@ install_speedtest
 install_diskman() {
   # diskman安装
   mkdir -p $package_path/luci-app-diskman
-  wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
+  wget -q https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O $package_path/luci-app-diskman/Makefile
   mkdir -p $package_path/parted
-  wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
+  wget -q https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O $package_path/parted/Makefile
 }
 install_diskman
 
@@ -110,9 +110,25 @@ install_mosdns() {
 }
 install_mosdns
 
-init_mosdns() {
-  mkdir -p $PARENT_DIR/wrt/files/etc/nikki/run
-  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.metadb -O $PARENT_DIR/wrt/files/etc/nikki/run/geoip.metadb
-  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat -O $PARENT_DIR/wrt/files/etc/nikki/run/GeoSite.dat
+init_openclash() {
+  local openclash_dir="$PARENT_DIR/wrt/files/etc/openclash"
+  mkdir -p $openclash_dir
+  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb -O $openclash_dir/Country.mmdb
+  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat  -O $openclash_dir/GeoSite.dat
+  wget -q https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat    -O $openclash_dir/GeoIP.dat
 }
-init_mosdns
+init_openclash
+
+fix_pkg_version() {
+  local dockerman_make_file="$PARENT_DIR/wrt/feeds/dockerman/applications/luci-app-dockerman/Makefile"
+  local dockerlib_make_file="$PARENT_DIR/wrt/feeds/dockerlib/collections/luci-lib-docker/Makefile"
+  sed -i -E \
+    "s/^([[:space:]]*PKG_VERSION[[:space:]]*:?=[[:space:]]*)([\"']?)v([0-9][^[:space:]#]*)([\"']?)/\1\2\3\4/" \
+    "$dockerman_make_file"
+  cat "$dockerman_make_file" | grep "PKG_VERSION"
+  sed -i -E \
+    "s/^([[:space:]]*PKG_VERSION[[:space:]]*:?=[[:space:]]*)([\"']?)v([0-9][^[:space:]#]*)([\"']?)/\1\2\3\4/" \
+    "$dockerlib_make_file"
+  cat "$dockerlib_make_file" | grep "PKG_VERSION"
+}
+fix_pkg_version

@@ -2,7 +2,7 @@
 # Copyright (C) 2026 VIKINGYFY
 
 #CI项目
-name: QCB-ALL
+name: QCB-SBE-IMMORTALWRT
 
 #CI计划
 on:
@@ -40,12 +40,12 @@ jobs:
         BRANCH: [master]
 
     #调用公用编译核心WRT-CORE.yml
-    uses: ./.github/workflows/WRT-CORE-SBE.yml
+    uses: ./.github/workflows/WRT-CORE.yml
     with:
       #编译配置
       WRT_CONFIG: ${{matrix.CONFIG}}
       #默认主题
-      WRT_THEME: argon
+      WRT_THEME: vantage
       #默认主机名
       WRT_NAME: OWRT
       #默认WIFI名称
