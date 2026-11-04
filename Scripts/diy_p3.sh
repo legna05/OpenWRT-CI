@@ -121,9 +121,14 @@ init_openclash
 
 fix_pkg_version() {
   local dockerman_make_file="$PARENT_DIR/wrt/feeds/dockerman/applications/luci-app-dockerman/Makefile"
+  local dockerlib_make_file="$PARENT_DIR/wrt/feeds/dockerlib/collections/luci-lib-docker/Makefile"
   sed -i -E \
     "s/^([[:space:]]*PKG_VERSION[[:space:]]*:?=[[:space:]]*)([\"']?)v([0-9][^[:space:]#]*)([\"']?)/\1\2\3\4/" \
     "$dockerman_make_file"
   cat "$dockerman_make_file" | grep "PKG_VERSION"
+  sed -i -E \
+    "s/^([[:space:]]*PKG_VERSION[[:space:]]*:?=[[:space:]]*)([\"']?)v([0-9][^[:space:]#]*)([\"']?)/\1\2\3\4/" \
+    "$dockerlib_make_file"
+  cat "$dockerlib_make_file" | grep "PKG_VERSION"
 }
 fix_pkg_version
