@@ -222,7 +222,7 @@ jobs:
               *test*)
                   cat "$GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt" >> .config
               ;;
-              *zn-m2*)
+              *ipq60*)
                   cat "$GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt" >> .config;
                   cat "$GITHUB_WORKSPACE/Config/GENERAL.txt" >> .config;
               ;;
