@@ -218,11 +218,20 @@ jobs:
         run: |
           cd ./wrt/
 
-          if [[ "${WRT_CONFIG,,}" == *test* || "${WRT_CONFIG,,}" == *zn-m2* ]]; then
-            cat $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
-          else
-            cat $GITHUB_WORKSPACE/Config/GENERAL.txt $GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt >> .config
-          fi
+          case "${WRT_CONFIG,,}" in
+              *test*)
+                  cat "$GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt" >> .config
+              ;;
+              *zn-m2*)
+                  cat "$GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt" >> .config;
+                  cat "$GITHUB_WORKSPACE/Config/GENERAL.txt" >> .config;
+              ;;
+              *)
+                  cat "$GITHUB_WORKSPACE/Config/GENERAL.txt" >> .config;
+                  cat "$GITHUB_WORKSPACE/Config/PASSWALL.txt" >> .config;
+                  cat "$GITHUB_WORKSPACE/Config/$WRT_CONFIG.txt" >> .config;
+              ;;
+          esac
 
           $GITHUB_WORKSPACE/Scripts/Settings.sh
           $GITHUB_WORKSPACE/.github/scripts/prepare-build-host.sh
